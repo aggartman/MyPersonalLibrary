@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Buenard:wght@400;700&display=swap" rel="stylesheet">
+    <link rel='icon' type='image/png' href="images/book-solid.svg">
+    <script src="Scripts/main.js" defer></script>
+    <title>My Library</title>
+</head>
+<body>
+    <div class="container">
+        <div class="image"><img class="backgroundImage" src="images/dark-wood-texture-seamless-free-thumb31.png" alt="background image"></div>
+        <h1 id="libraryTitle">My Library</h1>
+        <p class='about'>
+            This is a collection of the books I have read or would like to read. <span class='italics suggest'>Please feel free to drop a suggestion!</span>
+        </p>
+        <button id=newBook>Add Book to Library</button>
+        <div id="addLibBook" class='modal'>
+            <div class="modal-content">
+                <span class='close'>&times;</span>
+                <form action="" method="get" class="libraryForm" autocomplete="off" id='myForm'>
+                    <div class="libraryForm">
+                        <label for="title" class="label">Book Title</label>
+                        <input type="text" name="title" id="title" required>
+                    </div>
+                    <div class="libraryForm">
+                        <label for="author">Author's Name</label>
+                        <input type="text" name="author" id="author" required>
+                    </div>
+                    <div class="libraryForm">
+                        <label for="pages">Number of pages</label>
+                        <input type="text" name="pages" id="pages">
+                    </div>
+                    <div class="libraryForm">
+                        <label for="read">Have you already read it?</label>
+                        <input type="checkbox" name="read" id="read" value="True">
+                    </div>
+                    <div class="libraryForm">
+                        <input type="submit" name="submit" id="submit" value="Submit" onclick="addBookToLibrary(event)">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
