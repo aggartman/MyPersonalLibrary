@@ -67,6 +67,8 @@ body {
   color: antiquewhite;
   padding: 20px;
   padding-left: 25px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(19, 19, 19, 0.61)), to(rgba(19, 19, 19, 0)));
+  background-image: linear-gradient(rgba(19, 19, 19, 0.61), rgba(19, 19, 19, 0));
 }
 
 .about {
@@ -102,11 +104,17 @@ body {
 }
 
 .modal-content {
-  background-color: #fefefe;
+  background-color: antiquewhite;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
+  border-radius: 25px;
   width: 30%;
+  font-style: italic;
+}
+
+.libraryForm {
+  padding: 5px 0;
 }
 
 .close {
@@ -122,18 +130,38 @@ body {
   cursor: pointer;
 }
 
+#submit {
+  margin-top: 3px;
+  border: 2px solid goldenrod;
+  border-radius: 5px;
+  background-color: #1d1d1d;
+  color: antiquewhite;
+  font-family: inherit;
+  font-style: italic;
+  font-weight: 800;
+  padding: 5px;
+}
+
 #newBook {
   -ms-grid-column: 4;
   grid-column: 4;
-  border-radius: 50px;
+  border-radius: 100px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  height: 70%;
   padding: 10px;
+  color: goldenrod;
+  background-color: #1d1d1d;
+  border-color: goldenrod;
+  font-family: inherit;
+  font-style: italic;
+  font-size: 1rem;
 }
 
-#addLibBook {
-  border-radius: 25px;
+#newBook:active {
+  -webkit-transform: scale(0.75);
+          transform: scale(0.75);
 }
 
 #bookContainer {
@@ -146,6 +174,7 @@ body {
 }
 
 .card {
+  position: relative;
   padding: 1rem;
   border: 1px solid antiquewhite;
   border-radius: 15px;
@@ -165,6 +194,17 @@ body {
   border: none;
   border-radius: 25px;
   background-color: grey;
+}
+
+.closure {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 10px;
+  padding: 3px 5px;
+  color: white;
+  background-color: goldenrod;
+  border-color: black;
 }
 
 .read {

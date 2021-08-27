@@ -3,30 +3,6 @@
 // Beginning of Library 
 var myLibrary = [];
 
-Storage.prototype.getArray = function(arrayName) {
-    var thisArray = [];
-    var fetchArrayObj = this.getItem(arrayName);
-    if (typeof fetchArrayObj !== 'undefined') {
-        if (fetchArrayObj !== null) {
-            thisArray = JSON.parse(fetchArrayObj);
-        }
-    }
-    return thisArray;
-}
-Storage.prototype.pushArrayItem = function(arrayName, arrayItem) {
-    var existingArray = this.getArray(arrayName);
-    existingArray.push(arrayItem);
-    this.setItem(arrayName, JSON.stringify(existingArray));
-}
-Storage.prototype.popArrayItem = function(arrayName) {
-    var arrayItem = {};
-    var existingArray = this.getArray(arrayName);
-    if (existingArrray.length > 0) {
-        arrayItem = existingArray.pop();
-        this.setItem(arrayName, JSON.stringify(existingArray));
-    }
-}
-
 // constructor for Book
 class Book {
     constructor (index, title, author, pages, read,) {
@@ -53,7 +29,7 @@ class Library {
         }
     }
     removeBook(title) {
-        return this.books.filter((book) => book.title !== title)
+        this.books = this.books.filter((book) => book.title !== title)
     }
     getBook(title) {
         return this.books.find((book) => book.title === title)
@@ -67,57 +43,65 @@ const library = new Library();
 // Adding books to page
 const bookContainer = document.getElementById('bookContainer');
 
-function appendBooks() {
-    bookContainer.innerHTML = ''; 
+const appendBooks = () => {
+    bookContainer.innerHTML = '';
     for (let book of library.books) {
-        const card = document.createElement('div');
-        card.classList = 'card-body';
+        createBook(book);
+    }
+}
+const createBook = (book) => {
+    const card = document.createElement('div');
+    const cardHeader = document.createElement('div');
+    const readBtn = document.createElement('button');
+    const removeBtn = document.createElement('button');
+    const cardBody = document.createElement('div');
+    const title = document.createElement('h5');
+    const author = document.createElement('p');
+    const pages = document.createElement('p');
 
-        const content = `
-            <div class='card'>
-                <div class='card-header' id='heading-${book.index}'>
-                    <h5>
-                        <button class='btn-link' id='btn-${book.index}' onclick="read(this)">
-                        </button>
-                    </h5>
-                </div>
-            
-                <div id='body-${book.index}' class='collapse show' aria-labelledby='heading-${book.index}' data-parent='#bookContainer'>
-                    <div class='card-body'>
-                        <h5>${book.title}</h5>
-                        <p>${book.author}</p>
-                        <p>${book.pages}</p>
-                    </div>
-                </div>
-            </div>
-        `;
-        bookContainer.innerHTML += content;
-        for (var i=0; i < library.books.length; i++) {
-            if (book.read == true) {
-                let reader = document.getElementById('btn-' + book.index)
-                reader.classList.add('read')
-            }
-        }  
-    };
-    
+    card.classList.add('card');
+    cardHeader.classList.add('card-header');
+    readBtn.classList.add('btn-link');
+    removeBtn.classList.add('closure');
+    cardBody.classList.add('card-body');
+    if (book.read) {
+        readBtn.classList.add('read')
+    }
+    readBtn.onclick = read;
+    removeBtn.onclick = removeBook;
+
+    removeBtn.textContent = 'x'
+    title.textContent = book.title;
+    author.textContent = book.author;
+    pages.textContent = `${book.pages} pages`
+
+    card.appendChild(readBtn);
+    card.appendChild(removeBtn);
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(pages)
+    bookContainer.appendChild(card);
 }
 
-function read(obj) {
-    let readindicator = document.getElementsByClassName('btn-link');
-    for (let i = 0; i < readindicator.length; i++) {
-        if (obj == readindicator[i]) {
-            if (readindicator[i].classList.contains('read')) {
-                readindicator[i].classList.remove('read');
-                library.books[i].read = false;
-                localStore();
-                
-            } else {
-                readindicator[i].classList.add('read');
-                library.books[i].read = true;
-                localStore();
-            } 
-        }
-    }
+const read = (e) => {
+    const title = e.target.parentNode.children[2].innerHTML.replaceAll("", '');
+    const book = library.getBook(title)
+    book.read = !book.read;
+    localStore();
+    appendBooks();
+}
+// function  removeBook(e) {
+//     const title = e.parentNode.children[2].innerHTML.replaceAll("", '');
+//     library.removeBook(title);
+//     localStore();
+//     appendBooks();
+// }
+const removeBook = (e) => {
+    const title = e.target.parentNode.children[2].innerHTML.replaceAll("", '');
+    library.removeBook(title);
+    localStore();
+    appendBooks();
+
 }
 var count = 0;
 
