@@ -17,13 +17,13 @@
         <div class="image"><img class="backgroundImage" src="images/dark-wood-texture-seamless-free-thumb31.png" alt="background image"></div>
         <h1 id="libraryTitle">My Library</h1>
         <p class='about'>
-            This is a collection of the books I have read or would like to read. <span class='italics suggest'>Please feel free to drop a suggestion!</span>
+            This is a collection of the books I have read or would like to read. <br><span class='italics suggest'>Please feel free to drop a suggestion!</span>
         </p>
         <button id=newBook>Add Book to Library</button>
         <div id="addLibBook" class='modal'>
             <div class="modal-content">
                 <span class='close'>&times;</span>
-                <form action="" method="get" class="libraryForm" autocomplete="off" id='myForm'>
+                <form action="" method="get" class="libraryForm" autocomplete="on" id='myForm'>
                     <div class="libraryForm">
                         <label for="title" class="label">Book Title</label>
                         <input type="text" name="title" id="title" required>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="libraryForm">
                         <label for="read">Have you already read it?</label>
-                        <input type="checkbox" name="read" id="read" value="True">
+                        <input type="checkbox" name="read" id="read">
                     </div>
                     <div class="libraryForm">
                         <input type="submit" name="submit" id="submit" value="Submit" onclick="addBookToLibrary(event)">
@@ -46,6 +46,10 @@
                 </form>
             </div>
         </div>
+        <div id="bookContainer">
+
+        </div>
     </div>
+    
 </body>
 </html>
